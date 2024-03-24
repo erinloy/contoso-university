@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34707.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContosoUniversity.Data", "ContosoUniversity.Data\ContosoUniversity.Data.csproj", "{DF2790E6-5498-4C3B-86B2-B59ADEF7776F}"
 EndProject
@@ -21,6 +21,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FF16291-D2A7-48C3-8450-8B706450D515}"
 	ProjectSection(SolutionItems) = preProject
 		.travis.yml = .travis.yml
+		global.json = global.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContosoUniversity.Spa.React", "ContosoUniversity.Spa.React\ContosoUniversity.Spa.React.csproj", "{DF68B196-C7CD-425B-9C27-1F53A4DDF687}"
