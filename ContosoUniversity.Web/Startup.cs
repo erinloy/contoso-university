@@ -25,6 +25,11 @@ namespace ContosoUniversity
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
+
             services.AddCustomizedContext(Configuration, CurrentEnvironment);
             services.AddCustomizedIdentity(Configuration, CurrentEnvironment);
             services.AddCustomizedAuthentication(Configuration);

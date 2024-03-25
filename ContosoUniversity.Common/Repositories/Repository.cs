@@ -1,10 +1,12 @@
 ﻿using ContosoUniversity.Data.Entities;
 using ContosoUniversity.Common.Interfaces;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.Common;
+//using System.Data.Common;
 using ContosoUniversity.Data.DbContexts;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace ContosoUniversity.Data
 {
@@ -62,7 +64,7 @@ namespace ContosoUniversity.Data
         
         public async Task<int> ExecuteSqlCommandAsync(string queryString)
         {
-            return await context.Database.ExecuteSqlCommandAsync(queryString);
+            return await context.Database.ExecuteSqlRawAsync(queryString);
         }
 
         public DbConnection GetDbConnection()

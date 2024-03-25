@@ -7,8 +7,8 @@
         "ContosoUniversity.Data",
         "ContosoUniversity.Data.Tests"
     ],
-  "sdk": {
-    "version": "2.1.818",
-    "rollForward": "latestPatch"
-  }
+  //"sdk": {
+  //  "version": "8.0.0",
+  //  "rollForward": "latestPatch"
+  //}
 }

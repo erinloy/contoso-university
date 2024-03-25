@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -36,14 +37,9 @@ namespace ContosoUniversity.Tests
             return _inner.Execute<TResult>(expression);
         }
 
-        public IAsyncEnumerable<TResult> ExecuteAsync<TResult>(Expression expression)
+        public TResult ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
         {
-            return new TestAsyncEnumerable<TResult>(expression);
-        }
-
-        public Task<TResult> ExecuteAsync<TResult>(Expression expression, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(Execute<TResult>(expression));
+            return Execute<TResult>(expression);
         }
     }
 
@@ -57,7 +53,7 @@ namespace ContosoUniversity.Tests
             : base(expression)
         { }
 
-        public IAsyncEnumerator<T> GetEnumerator()
+        public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = default)
         {
             return new TestAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
         }
@@ -79,7 +75,6 @@ namespace ContosoUniversity.Tests
 
         public void Dispose()
         {
-            _inner.Dispose();
         }
 
         public T Current
@@ -90,9 +85,15 @@ namespace ContosoUniversity.Tests
             }
         }
 
-        public Task<bool> MoveNext(CancellationToken cancellationToken)
+        public ValueTask<bool> MoveNextAsync()
         {
-            return Task.FromResult(_inner.MoveNext());
+            return ValueTask.FromResult(_inner.MoveNext());
+        }
+
+        public ValueTask DisposeAsync()
+        {
+            _inner.Dispose();
+            return ValueTask.CompletedTask;
         }
     }
 }
